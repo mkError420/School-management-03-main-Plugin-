@@ -2325,235 +2325,128 @@ $show_form = ( 'add' === $action || $is_edit );
 
 				<table class="wp-list-table widefat fixed striped sms-modern-table">
 
-
-
 					<thead>
-
-
 
 						<tr>
 
-
-
+						<tr>
 							<th><?php esc_html_e( 'Student', 'school-management-system' ); ?></th>
-
-
-
 							<th><?php esc_html_e( 'Class', 'school-management-system' ); ?></th>
-
-
-
 							<th><?php esc_html_e( 'Exam', 'school-management-system' ); ?></th>
-
-
-
-							<th><?php esc_html_e( 'Subject', 'school-management-system' ); ?></th>
-
-
-
-							<th><?php esc_html_e( 'Performance', 'school-management-system' ); ?></th>
-
-
-
-							<th><?php esc_html_e( 'Actions', 'school-management-system' ); ?></th>
-
-
-
+							<th style="width: 50%;"><?php esc_html_e( 'Results', 'school-management-system' ); ?></th>
 						</tr>
-
-
 
 					</thead>
 
-
-
 					<tbody>
-
-
 
 						<?php
 
-
-
 						$filters = array(
-
-
 
 							'class_id'   => $class_id_filter,
 
-
-
 							'exam_id'    => $exam_id_filter,
-
-
 
 							'subject_id' => $subject_id_filter,
 
-
-
 						);
 
-
-
 						$results = Result::get_by_filters( $filters );
-
-
-
-
-
-
-
+						$grouped_results = [];
 						if ( ! empty( $results ) ) {
-
-
-
-							foreach ( $results as $row ) {
-
-
-
-								$grade_class = 'grade-' . strtolower( str_replace( '+', 'plus', $row->grade ) );
-
-								$performance_class = $row->percentage >= $row->passing_marks ? 'performance-pass' : 'performance-fail';
-
-
-
-								?>
-
-
-
-								<tr>
-
-
-
-									<td>
-
-
-
-										<div class="sms-student-info">
-
-											<div class="student-avatar">
-
-												<span class="dashicons dashicons-user"></span>
-
-											</div>
-
-											<div class="student-details">
-
-												<strong><?php echo esc_html( $row->first_name . ' ' . $row->last_name ); ?></strong><br>
-
-												<span class="description"><?php echo esc_html( $row->roll_number ); ?></span>
-
-											</div>
-
-										</div>
-
-
-
-									</td>
-
-
-
-									<td><span class="sms-class-badge"><?php echo esc_html( $row->class_name ); ?></span></td>
-
-
-
-									<td><?php echo esc_html( $row->exam_name ); ?></td>
-
-
-
-									<td><?php echo esc_html( $row->subject_name ); ?></td>
-
-
-
-									<td>
-
-										<div class="sms-performance-cell">
-
-											<div class="performance-marks">
-
-												<span class="marks-obtained"><?php echo esc_html( $row->obtained_marks ); ?></span>
-
-												<span class="marks-total">/ <?php echo esc_html( $row->total_marks ?? '100' ); ?></span>
-
-											</div>
-
-											<div class="performance-percentage <?php echo esc_attr( $performance_class ); ?>">
-
-												<?php echo number_format( $row->percentage, 1 ); ?>%
-
-											</div>
-
-											<div class="performance-grade <?php echo esc_attr( $grade_class ); ?>">
-
-												<?php echo esc_html( $row->grade ); ?>
-
-											</div>
-
-										</div>
-
-
-
-									</td>
-
-
-
-									<td>
-
-										<div class="sms-row-actions">
-
-											<a class="sms-action-btn edit" href="<?php echo esc_url( admin_url( 'admin.php?page=sms-results&action=edit&id=' . $row->id ) ); ?>">
-
-												<span class="dashicons dashicons-edit"></span>
-
-												<?php esc_html_e( 'Edit', 'school-management-system' ); ?>
-
-											</a>
-
-											<a class="sms-action-btn delete" href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin.php?page=sms-results&action=delete&id=' . $row->id ), 'sms_delete_result_nonce', '_wpnonce' ) ); ?>" onclick="return confirm('<?php esc_attr_e( 'Are you sure you want to delete this result?', 'school-management-system' ); ?>')">
-
-												<span class="dashicons dashicons-trash"></span>
-
-												<?php esc_html_e( 'Delete', 'school-management-system' ); ?>
-
-											</a>
-
-										</div>
-
-									</td>
-
-
-
-								</tr>
-
-
-
-								<?php
-
-
-
+							foreach ( $results as $result ) {
+								$grouped_results[ $result->student_id ][ $result->exam_id ][] = $result;
 							}
-
-
-
-						} else {
-
-
-
-							echo '<tr><td colspan="6" class="no-results">' . esc_html__( 'No results found.', 'school-management-system' ) . '</td></tr>';
-
-
-
 						}
-
-
-
+						if ( ! empty( $grouped_results ) ) {
+							foreach ( $grouped_results as $student_id => $exams ) {
+								foreach ( $exams as $exam_id => $subject_results ) {
+									$first_result = $subject_results[0];
+									$total_obtained_marks = 0;
+									$total_max_marks = 0;
+									foreach ( $subject_results as $res ) {
+										$total_obtained_marks += $res->obtained_marks;
+										$total_max_marks += $res->total_marks;
+									}
+									$overall_percentage = $total_max_marks > 0 ? ( $total_obtained_marks / $total_max_marks ) * 100 : 0;
+									$overall_grade = Result::calculate_grade( $overall_percentage, $first_result->passing_marks );
+									?>
+									<tr>
+										<td>
+											<div class="sms-student-info">
+												<div class="student-avatar">
+													<span class="dashicons dashicons-user"></span>
+												</div>
+												<div class="student-details">
+													<strong><?php echo esc_html( $first_result->first_name . ' ' . $first_result->last_name ); ?></strong><br>
+													<span class="description"><?php echo esc_html( $first_result->roll_number ); ?></span>
+												</div>
+											</div>
+										</td>
+										<td><span class="sms-class-badge"><?php echo esc_html( $first_result->class_name ); ?></span></td>
+										<td>
+											<?php echo esc_html( $first_result->exam_name ); ?><br>
+											<small style="font-weight:bold;"><?php printf( esc_html__( 'Total: %s/%s (%s)', 'school-management-system' ), $total_obtained_marks, $total_max_marks, $overall_grade ); ?></small>
+										</td>
+										<td style="padding: 0 !important; vertical-align: top;">
+											<table class="inner-results" style="width:100%; background: transparent; border: none;">
+												<thead class="screen-reader-text">
+													<tr>
+														<th><?php esc_html_e( 'Subject', 'school-management-system' ); ?></th>
+														<th><?php esc_html_e( 'Performance', 'school-management-system' ); ?></th>
+														<th><?php esc_html_e( 'Actions', 'school-management-system' ); ?></th>
+													</tr>
+												</thead>
+												<tbody>
+													<?php foreach ( $subject_results as $row ) : ?>
+														<?php
+														$grade_class = 'grade-' . strtolower( str_replace( '+', 'plus', $row->grade ) );
+														$performance_class = $row->percentage >= $row->passing_marks ? 'performance-pass' : 'performance-fail';
+														?>
+														<tr style="background: transparent;">
+															<td style="width: 30%; border:none; padding: 8px; border-bottom: 1px solid #f8f9fa;"><?php echo esc_html( $row->subject_name ); ?></td>
+															<td style="width: 45%; border:none; padding: 8px; border-bottom: 1px solid #f8f9fa;">
+																<div class="sms-performance-cell">
+																	<div class="performance-marks">
+																		<span class="marks-obtained"><?php echo esc_html( $row->obtained_marks ); ?></span>
+																		<span class="marks-total">/ <?php echo esc_html( $row->total_marks ?? '100' ); ?></span>
+																	</div>
+																	<div class="performance-percentage <?php echo esc_attr( $performance_class ); ?>">
+																		<?php echo number_format( $row->percentage, 1 ); ?>%
+																	</div>
+																	<div class="performance-grade <?php echo esc_attr( $grade_class ); ?>">
+																		<?php echo esc_html( $row->grade ); ?>
+																	</div>
+																</div>
+															</td>
+															<td style="width: 25%; border:none; padding: 8px; border-bottom: 1px solid #f8f9fa; text-align: right;">
+																<div class="sms-row-actions">
+																	<a class="sms-action-btn edit" href="<?php echo esc_url( admin_url( 'admin.php?page=sms-results&action=edit&id=' . $row->id ) ); ?>">
+																		<span class="dashicons dashicons-edit"></span>
+																		<?php esc_html_e( 'Edit', 'school-management-system' ); ?>
+																	</a>
+																	<a class="sms-action-btn delete" href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin.php?page=sms-results&action=delete&id=' . $row->id ), 'sms_delete_result_nonce', '_wpnonce' ) ); ?>" onclick="return confirm('<?php esc_attr_e( 'Are you sure you want to delete this result?', 'school-management-system' ); ?>')">
+																		<span class="dashicons dashicons-trash"></span>
+																		<?php esc_html_e( 'Delete', 'school-management-system' ); ?>
+																	</a>
+																</div>
+															</td>
+														</tr>
+													<?php endforeach; ?>
+												</tbody>
+											</table>
+										</td>
+									</tr>
+									<?php
+								}
+							}
+						} else {
+							echo '<tr><td colspan="4" class="no-results">' . esc_html__( 'No results found.', 'school-management-system' ) . '</td></tr>';
+						}
 						?>
 
-
-
 					</tbody>
-
-
 
 				</table>
 
