@@ -1,0 +1,151 @@
+<?php
+/**
+ * Translation strings for School Management System
+ * This file helps with plugin localization
+ *
+ * @package School_Management_System
+ */
+
+// Dashboard
+__( 'School Management System Dashboard', 'school-management-system' );
+__( 'Total Students', 'school-management-system' );
+__( 'Total Teachers', 'school-management-system' );
+__( 'Total Classes', 'school-management-system' );
+__( 'Total Exams', 'school-management-system' );
+__( 'Upcoming Exams', 'school-management-system' );
+
+// Menu Items
+__( 'School Management', 'school-management-system' );
+__( 'Students', 'school-management-system' );
+__( 'Teachers', 'school-management-system' );
+__( 'Classes', 'school-management-system' );
+__( 'Subjects', 'school-management-system' );
+__( 'Enrollments', 'school-management-system' );
+__( 'Attendance', 'school-management-system' );
+__( 'Fees', 'school-management-system' );
+__( 'Exams', 'school-management-system' );
+__( 'Results', 'school-management-system' );
+__( 'Settings', 'school-management-system' );
+
+// Common Actions
+__( 'Add New', 'school-management-system' );
+__( 'Edit', 'school-management-system' );
+__( 'Delete', 'school-management-system' );
+__( 'Update', 'school-management-system' );
+__( 'Save', 'school-management-system' );
+__( 'Cancel', 'school-management-system' );
+__( 'Search', 'school-management-system' );
+__( 'Actions', 'school-management-system' );
+
+// Table Headers
+__( 'ID', 'school-management-system' );
+__( 'Name', 'school-management-system' );
+__( 'Email', 'school-management-system' );
+__( 'Status', 'school-management-system' );
+__( 'Date', 'school-management-system' );
+__( 'Amount', 'school-management-system' );
+
+// Student Fields
+__( 'First Name', 'school-management-system' );
+__( 'Last Name', 'school-management-system' );
+__( 'Roll Number', 'school-management-system' );
+__( 'Phone', 'school-management-system' );
+__( 'Date of Birth', 'school-management-system' );
+__( 'Gender', 'school-management-system' );
+__( 'Address', 'school-management-system' );
+__( 'City', 'school-management-system' );
+__( 'State', 'school-management-system' );
+__( 'Zip Code', 'school-management-system' );
+__( 'Country', 'school-management-system' );
+__( 'Parent Name', 'school-management-system' );
+__( 'Parent Email', 'school-management-system' );
+__( 'Parent Phone', 'school-management-system' );
+__( 'Enrollment Date', 'school-management-system' );
+
+// Teacher Fields
+__( 'Employee ID', 'school-management-system' );
+__( 'Qualification', 'school-management-system' );
+__( 'Specialization', 'school-management-system' );
+
+// Class Fields
+__( 'Class Name', 'school-management-system' );
+__( 'Class Code', 'school-management-system' );
+__( 'Capacity', 'school-management-system' );
+
+// Subject Fields
+__( 'Subject Name', 'school-management-system' );
+__( 'Subject Code', 'school-management-system' );
+
+// Exam Fields
+__( 'Exam Name', 'school-management-system' );
+__( 'Exam Code', 'school-management-system' );
+__( 'Exam Date', 'school-management-system' );
+__( 'Total Marks', 'school-management-system' );
+__( 'Passing Marks', 'school-management-system' );
+
+// Result Fields
+__( 'Obtained Marks', 'school-management-system' );
+__( 'Percentage', 'school-management-system' );
+__( 'Grade', 'school-management-system' );
+
+// Attendance
+__( 'Attendance', 'school-management-system' );
+__( 'Present', 'school-management-system' );
+__( 'Absent', 'school-management-system' );
+__( 'Late', 'school-management-system' );
+
+// Fees
+__( 'Fee Type', 'school-management-system' );
+__( 'Due Date', 'school-management-system' );
+__( 'Payment Date', 'school-management-system' );
+__( 'Pending', 'school-management-system' );
+__( 'Paid', 'school-management-system' );
+
+// Messages
+__( 'No results found', 'school-management-system' );
+__( 'No students found', 'school-management-system' );
+__( 'No teachers found', 'school-management-system' );
+__( 'No classes found', 'school-management-system' );
+__( 'No subjects found', 'school-management-system' );
+__( 'No enrollments found', 'school-management-system' );
+__( 'No attendance records found', 'school-management-system' );
+__( 'No fees found', 'school-management-system' );
+__( 'No exams found', 'school-management-system' );
+__( 'No results found', 'school-management-system' );
+__( 'Are you sure?', 'school-management-system' );
+__( 'Unauthorized', 'school-management-system' );
+__( 'Unauthorized access', 'school-management-system' );
+__( 'Security check failed', 'school-management-system' );
+
+// Login Portal
+__( 'Student Login', 'school-management-system' );
+__( 'Parent Login', 'school-management-system' );
+__( 'Login', 'school-management-system' );
+__( 'Logout', 'school-management-system' );
+__( 'Password', 'school-management-system' );
+__( 'Invalid email or password', 'school-management-system' );
+
+// Portals
+__( 'Student Portal', 'school-management-system' );
+__( 'Parent Portal', 'school-management-system' );
+__( 'Student Information', 'school-management-system' );
+__( 'You are already logged in', 'school-management-system' );
+__( 'You must be logged in as a student to view this content', 'school-management-system' );
+__( 'Student profile not found', 'school-management-system' );
+
+// Results
+__( 'Results', 'school-management-system' );
+__( 'Exam Results', 'school-management-system' );
+__( 'Exam Results Lookup', 'school-management-system' );
+__( 'Enter Roll Number', 'school-management-system' );
+__( 'Student not found', 'school-management-system' );
+
+// Settings
+__( 'School Name', 'school-management-system' );
+__( 'School Email', 'school-management-system' );
+__( 'School Phone', 'school-management-system' );
+
+// Roles
+__( 'Teacher', 'school-management-system' );
+__( 'Student', 'school-management-system' );
+__( 'Parent', 'school-management-system' );

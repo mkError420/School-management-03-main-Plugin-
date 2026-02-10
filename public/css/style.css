@@ -1,0 +1,277 @@
+/* School Management System Frontend Styles */
+
+:root {
+	--primary-color: #0073aa;
+	--secondary-color: #005a87;
+	--success-color: #46b450;
+	--danger-color: #dc3545;
+	--border-color: #ddd;
+	--text-color: #333;
+	--light-bg: #f9f9f9;
+}
+
+.sms-login-container {
+	max-width: 400px;
+	margin: 50px auto;
+	padding: 30px;
+	background: white;
+	border: 1px solid var(--border-color);
+	border-radius: 4px;
+	box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sms-login-container h2 {
+	margin-top: 0;
+	text-align: center;
+	color: var(--text-color);
+	font-size: 24px;
+}
+
+.sms-login-form {
+	margin-top: 20px;
+}
+
+.sms-form-group {
+	margin-bottom: 15px;
+}
+
+.sms-form-group label {
+	display: block;
+	margin-bottom: 8px;
+	font-weight: 600;
+	color: var(--text-color);
+	font-size: 14px;
+}
+
+.sms-form-group input {
+	width: 100%;
+	padding: 10px 12px;
+	border: 1px solid var(--border-color);
+	border-radius: 4px;
+	font-size: 14px;
+	box-sizing: border-box;
+}
+
+.sms-form-group input:focus {
+	outline: none;
+	border-color: var(--primary-color);
+	box-shadow: 0 0 0 2px rgba(0, 115, 170, 0.1);
+}
+
+.sms-btn {
+	width: 100%;
+	padding: 10px;
+	background-color: var(--primary-color);
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: 600;
+	transition: background-color 0.3s ease;
+	margin-top: 10px;
+}
+
+.sms-btn:hover {
+	background-color: var(--secondary-color);
+}
+
+/* Student Portal */
+.sms-student-portal {
+	max-width: 800px;
+	margin: 20px auto;
+	padding: 20px;
+	background: white;
+	border: 1px solid var(--border-color);
+	border-radius: 4px;
+}
+
+.sms-student-portal h2 {
+	color: var(--text-color);
+	border-bottom: 2px solid var(--primary-color);
+	padding-bottom: 10px;
+}
+
+.sms-student-portal h3 {
+	color: var(--text-color);
+	margin-top: 25px;
+	margin-bottom: 15px;
+}
+
+.sms-student-info table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+.sms-student-info th,
+.sms-student-info td {
+	padding: 12px;
+	text-align: left;
+	border-bottom: 1px solid var(--border-color);
+}
+
+.sms-student-info th {
+	background-color: var(--light-bg);
+	font-weight: 600;
+	width: 30%;
+}
+
+/* Results Table */
+.sms-results-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 15px 0;
+}
+
+.sms-results-table thead {
+	background-color: var(--light-bg);
+}
+
+.sms-results-table th,
+.sms-results-table td {
+	padding: 12px;
+	text-align: left;
+	border-bottom: 1px solid var(--border-color);
+}
+
+.sms-results-table th {
+	font-weight: 600;
+	color: var(--text-color);
+}
+
+.sms-results-table tbody tr:hover {
+	background-color: #f0f0f0;
+}
+
+/* Parent Portal */
+.sms-parent-portal {
+	max-width: 800px;
+	margin: 20px auto;
+	padding: 20px;
+	background: white;
+	border: 1px solid var(--border-color);
+	border-radius: 4px;
+}
+
+.sms-parent-portal h2 {
+	color: var(--text-color);
+	border-bottom: 2px solid var(--primary-color);
+	padding-bottom: 10px;
+}
+
+/* Timetable */
+.sms-timetable {
+	max-width: 800px;
+	margin: 20px auto;
+	padding: 20px;
+	background: white;
+	border: 1px solid var(--border-color);
+	border-radius: 4px;
+}
+
+.sms-timetable h2 {
+	color: var(--text-color);
+	border-bottom: 2px solid var(--primary-color);
+	padding-bottom: 10px;
+}
+
+/* Exam Results */
+.sms-exam-results {
+	max-width: 800px;
+	margin: 20px auto;
+	padding: 20px;
+	background: white;
+	border: 1px solid var(--border-color);
+	border-radius: 4px;
+}
+
+.sms-exam-results h2 {
+	color: var(--text-color);
+	border-bottom: 2px solid var(--primary-color);
+	padding-bottom: 10px;
+}
+
+.sms-results-search {
+	margin: 20px 0;
+	display: flex;
+	gap: 10px;
+}
+
+.sms-results-search input {
+	flex: 1;
+	padding: 10px;
+	border: 1px solid var(--border-color);
+	border-radius: 4px;
+	font-size: 14px;
+}
+
+.sms-results-search button {
+	padding: 10px 20px;
+	background-color: var(--primary-color);
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-weight: 600;
+	transition: background-color 0.3s ease;
+}
+
+.sms-results-search button:hover {
+	background-color: var(--secondary-color);
+}
+
+.sms-results-display {
+	margin-top: 20px;
+}
+
+.sms-results-display h3 {
+	color: var(--text-color);
+	margin-bottom: 15px;
+}
+
+/* Logout Button */
+.sms-btn-logout {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: var(--danger-color);
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-weight: 600;
+	text-decoration: none;
+	transition: background-color 0.3s ease;
+	margin-top: 20px;
+}
+
+.sms-btn-logout:hover {
+	background-color: #c82333;
+	text-decoration: none;
+	color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+	.sms-login-container,
+	.sms-student-portal,
+	.sms-parent-portal,
+	.sms-timetable,
+	.sms-exam-results {
+		margin: 10px;
+		padding: 15px;
+	}
+
+	.sms-results-search {
+		flex-direction: column;
+	}
+
+	.sms-results-table {
+		font-size: 13px;
+	}
+
+	.sms-results-table th,
+	.sms-results-table td {
+		padding: 8px;
+	}
+}
